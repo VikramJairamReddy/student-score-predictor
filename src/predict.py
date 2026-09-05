@@ -12,9 +12,32 @@ MODEL_PATH = PROJECT_ROOT / "models" / "student_score_model.pkl"
 model = joblib.load(MODEL_PATH)
 
 # Get information from the user
-study_hours = float(input("Study hours: "))
-attendance = float(input("Attendance percentage: "))
-previous_score = float(input("Previous score: "))
+while True:
+    try:
+        study_hours = float(input("Study hours (0–24): "))
+        if 0 <= study_hours <= 24:
+            break
+        print("Study hours must be between 0 and 24.")
+    except ValueError:
+        print("Please enter a valid number.")
+
+while True:
+    try:
+        attendance = float(input("Attendance percentage (0–100): "))
+        if 0 <= attendance <= 100:
+            break
+        print("Attendance must be between 0 and 100.")
+    except ValueError:
+        print("Please enter a valid number.")
+
+while True:
+    try:
+        previous_score = float(input("Previous score (0–100): "))
+        if 0 <= previous_score <= 100:
+            break
+        print("Previous score must be between 0 and 100.")
+    except ValueError:
+        print("Please enter a valid number.")
 
 # Creating a DataFrame with the same features used during training
 student = pd.DataFrame({
