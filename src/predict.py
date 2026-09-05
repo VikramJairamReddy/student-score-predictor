@@ -25,5 +25,6 @@ student = pd.DataFrame({
 
 # Make the prediction
 predicted_score = model.predict(student)[0]
+predicted_score = max(0, min(100, predicted_score))
 
 print(f"\nPredicted final score: {predicted_score:.2f}")
